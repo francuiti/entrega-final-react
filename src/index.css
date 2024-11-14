@@ -4,7 +4,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /*FONT REGULAR DEFAULT*/
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -18,7 +17,7 @@ a{
   color: #2ECC71;
 }
 
-/*FONTS*/
+
 .poppins-thin {
   font-family: "Poppins", sans-serif;
   font-weight: 100;

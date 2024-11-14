@@ -5,50 +5,49 @@ import { collection, getDocs, query, where } from "firebase/firestore"
 import db from "../../db/db.js"
 import "./itemlistcontainer.css"
 
-const ItemListContainer = ({ saludo }) => {
-  const [products, setProducts] = useState([])
-  const { idCategory } = useParams()
+const ProductListContainer = ({ greeting }) => {
+  const [products, setProducts] = useState([]);
+  const { categoryId } = useParams();
 
-  const getProducts = () => {
-    const productsRef = collection( db, "products" )
-    getDocs(productsRef)
-      .then((dataDb)=> {
-        //formateamos correctamente nuestros productos
-        const productsDb = dataDb.docs.map((productDb)=> {
-          return { id: productDb.id , ...productDb.data() }
-        })
+  const fetchProducts = () => {
+    const productsCollection = collection(db, "products");
+    getDocs(productsCollection)
+      .then((snapshot) => {
+        const productsArray = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setProducts(productsArray);
+      });
+  };
 
-        setProducts(productsDb)
-      })
-  }
-
-  const getProductsByCategory = () => {
-    const productsRef = collection(db, "products")
-    const queryCategories = query( productsRef, where("category", "==", idCategory) )
-    getDocs(queryCategories)
-      .then((dataDb)=> {
-        const productsDb = dataDb.docs.map((productDb)=>{
-          return { id: productDb.id, ...productDb.data() }
-        })
-
-        setProducts(productsDb)
-      })
-  }
+  const fetchProductsByCategory = () => {
+    const productsCollection = collection(db, "products");
+    const categoryQuery = query(productsCollection, where("category", "==", categoryId));
+    getDocs(categoryQuery)
+      .then((snapshot) => {
+        const filteredProducts = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setProducts(filteredProducts);
+      });
+  };
 
   useEffect(() => {
-    if(idCategory){
-      getProductsByCategory()
-    }else{
-      getProducts()
+    if (categoryId) {
+      fetchProductsByCategory();
+    } else {
+      fetchProducts();
     }
-  }, [idCategory])
-
+  }, [categoryId]);
 
   return (
-    <div className="itemlistcontainer">
-      <h1>{saludo}</h1>
+    <div className="product-list-container">
+      <h1>{greeting}</h1>
       <ItemList products={products} />
     </div>
-  )
-}
-export default ItemListContainer
+  );
+};
+
+export default ProductListContainer;

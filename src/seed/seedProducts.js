@@ -1,74 +1,59 @@
 import db from "../db/db.js";
 import { addDoc, collection } from "firebase/firestore"
 
-//en caso de que tengan un json
-import data from "../data/data.json" assert { type: "json" }
-
 const products = [
   {
-    id: "Grt223",
-    name: "Remera Extreme",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores corporis eos nostrum eum iste voluptate ullam itaque possimus, dolor fugiat id praesentium veniam nisi pariatur sit non eligendi. Ad, veritatis!",
-    price: 400,
+    id: "Cln001",
+    name: "Desinfectante Multiuso",
+    description: "Poderoso desinfectante multiuso, ideal para limpiar y eliminar el 99.9% de bacterias en superficies. Perfecto para cocinas, baños y áreas de uso frecuente.",
+    price: 350,
+    stock: 15,
+    image: "/img/desinfectante.jpg",
+    category: "limpieza"
+  },
+  {
+    id: "Cln002",
+    name: "Detergente Líquido Concentrado",
+    description: "Detergente líquido concentrado con fórmula avanzada para remover grasa y residuos difíciles en vajillas, utensilios de cocina y más.",
+    price: 150,
+    stock: 20,
+    image: "/img/detergente.jpg",
+    category: "limpieza"
+  },
+  {
+    id: "Cln003",
+    name: "Limpiador de Vidrios",
+    description: "Limpiador de vidrios que deja una capa antiempañante y proporciona un brillo sin residuos en ventanas, espejos y otras superficies de vidrio.",
+    price: 250,
     stock: 10,
-    image: "/img/remera-h.jpg",
-    category: "remeras"
+    image: "/img/limpiador-vidrios.jpg",
+    category: "limpieza"
   },
   {
-    id: "Grt224",
-    name: "Remera Fitz Roy",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores corporis eos nostrum eum iste voluptate ullam itaque possimus, dolor fugiat id praesentium veniam nisi pariatur sit non eligendi. Ad, veritatis!",
-    price: 420,
-    stock: 4,
-    image: "/img/remera-m.jpg",
-    category: "remeras"
+    id: "Cln004",
+    name: "Limpiador para Pisos",
+    description: "Limpiador líquido para pisos, seguro y efectivo en cualquier tipo de superficie, dejando un fresco aroma a lavanda.",
+    price: 400,
+    stock: 8,
+    image: "/img/limpiador-pisos.jpg",
+    category: "limpieza"
   },
   {
-    id: "Hff556",
-    name: "Pantalon Dorian",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores corporis eos nostrum eum iste voluptate ullam itaque possimus, dolor fugiat id praesentium veniam nisi pariatur sit non eligendi. Ad, veritatis!",
-    price: 720,
-    stock: 5,
-    image: "/img/pantalon-h.jpg",
-    category: "pantalones"
+    id: "Cln005",
+    name: "Desengrasante Potente",
+    description: "Desengrasante potente para uso en cocinas y áreas industriales. Remueve grasas adheridas y residuos difíciles de manera rápida.",
+    price: 300,
+    stock: 12,
+    image: "/img/desengrasante.jpg",
+    category: "limpieza"
   },
   {
-    id: "Hff557",
-    name: "Pantalon Ambar",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores corporis eos nostrum eum iste voluptate ullam itaque possimus, dolor fugiat id praesentium veniam nisi pariatur sit non eligendi. Ad, veritatis!",
-    price: 620,
-    stock: 17,
-    image: "/img/pantalon-m.jpg",
-    category: "pantalones"
-  },
-  {
-    id: "Wre442",
-    name: "Zapatillas Cloudfield",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores corporis eos nostrum eum iste voluptate ullam itaque possimus, dolor fugiat id praesentium veniam nisi pariatur sit non eligendi. Ad, veritatis!",
-    price: 800,
-    stock: 2,
-    image: "/img/zapatillas-m.jpg",
-    category: "zapatillas"
-  },
-  {
-    id: "Wre443",
-    name: "Zapatillas Space",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores corporis eos nostrum eum iste voluptate ullam itaque possimus, dolor fugiat id praesentium veniam nisi pariatur sit non eligendi. Ad, veritatis!",
-    price: 820,
-    stock: 6,
-    image: "/img/zapatillas-h.jpg",
-    category: "zapatillas"
-  },
-]
-
-const seedProducts = () => {
-  const productsRef = collection(db, "products")
-  data.map(( { id, ...dataProduct } )=> {
-    addDoc(productsRef, dataProduct)
-  })
-
-  console.log("productos subidos")
-  return
-}
-
-seedProducts()
+    id: "Cln006",
+    name: "Jabón en Polvo para Ropa",
+    description: "Jabón en polvo para ropa, con agentes quitamanchas que aseguran limpieza profunda y un aroma duradero en tus prendas.",
+    price: 200,
+    stock: 18,
+    image: "/img/jabon-polvo.jpg",
+    category: "limpieza"
+  }
+];
